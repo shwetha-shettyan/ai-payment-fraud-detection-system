@@ -35,15 +35,12 @@ This system processes payment events asynchronously, performs fraud analysis usi
           | (FastAPI + Python + AI Agents)   |
           +----------------------------------+
                            |
-          +----------------+----------------+
-          |                |                |
-          v                v                v
-   Velocity Agent    Device Agent     Geo Agent
-        |                 |                |
-        +-----------------+----------------+
-                          |
-                          v
-                    ML Fraud Agent
+  +----------------+----------------+----------------+
+  |                |                |                |
+  v                v                v                v
+Velocity Agent    Device Agent     Geo Agent       ML Fraud Agent
+  |                |                |                |
+  +----------------+----------------+----------------+
                           |
                           v
                 Investigation Agent (LLM)
