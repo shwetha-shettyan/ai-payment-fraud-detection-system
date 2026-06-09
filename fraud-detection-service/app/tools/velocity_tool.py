@@ -17,4 +17,4 @@ def get_velocity(user_id: str) -> str:
     if current_count == 1:
         redis_client.expire(key, WINDOW_SECONDS)
 
-    return f"User made {current_count} transactions in last 2 minutes"
+    return f"User made {current_count} transactions in last 3 minutes"
