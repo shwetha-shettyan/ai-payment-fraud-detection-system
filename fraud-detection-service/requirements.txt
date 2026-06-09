@@ -8,3 +8,7 @@ pandas
 numpy
 joblib
 python-dotenv
+langchain
+langgraph
+langchain-groq
+redis

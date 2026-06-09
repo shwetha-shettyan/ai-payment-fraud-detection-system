@@ -8,6 +8,7 @@ from app.schemas.payment_event import PaymentEvent
 #from app.services.fraud_service import calculate_fraud_score
 from app.services.ml_fraud_service import predict_fraud
 from app.kafka.producer import publish_fraud_result
+from app.agents.fraud_agent import investigate
 
 def start_consumer(): 
     consumer = None 
@@ -34,6 +35,12 @@ def start_consumer():
                 payment = PaymentEvent(**data) 
                 #result = calculate_fraud_score(payment) 
                 result = predict_fraud(payment)
+
+                # Agent Code
+                agent_result = investigate(payment)
+                print("AGENT INVESTIGATION:")
+                print(agent_result)
+
                 result_payload = { 
                     "paymentIntentId": payment.paymentIntentId, 
                     **result 

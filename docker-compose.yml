@@ -39,6 +39,14 @@ services:
       - postgres-data:/var/lib/postgresql/data
     networks:
       - payment-network
+  
+  redis: 
+    image: redis:7 
+    container_name: redis 
+    ports: 
+      - "6379:6379"
+    networks:
+      - payment-network
 
   payment-service:
     build:
@@ -63,13 +71,15 @@ services:
     container_name: fraud-detection-service
     depends_on:
       - kafka
+      - redis
     ports:
       - "8001:8001"
     environment:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
     networks:
       - payment-network
-
+    env_file: 
+      - ./fraud-detection-service/.env
 
 networks:
   payment-network:
